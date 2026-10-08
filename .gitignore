@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# PyInstaller / Build Artifacts
+build/
+dist/
+*.spec
+
+# Deprecated / Legacy Heavy Executable (>90MB)
+StatShark_Exporter.exe
+Run_StatShark_Exporter.bat
+
+# User Data & Test Outputs
+data test/
+*.csv
+*_Summary.txt
+*_StatShark_PlayerStats.json
+*_search_result.json
+
+# Cache & Temporary Files
+*cache*.json
+statshark_gui_config.json
+statshark_token_cache.json
+*profile*
+
+# IDE / Editor Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
