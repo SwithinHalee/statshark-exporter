@@ -1,87 +1,41 @@
-# 🦈 StatShark War Thunder Data Exporter (Fast GUI)
+# 🦈 StatShark War Thunder Data Exporter
 
-A lightweight, modern, and high-performance desktop application for exporting player combat statistics and vehicle records from [StatShark.net](https://statshark.net) into CSV and JSON formats.
+## 📖 What is this?
+**StatShark War Thunder Data Exporter** is a desktop tool designed to quickly fetch and export War Thunder player profiles and vehicle statistics directly from [StatShark.net](https://statshark.net). 
 
----
-
-## ⚡ Key Highlights & Architecture
-
-- **Ultra-Fast Data Fetching (~1 – 2 Seconds):**  
-  Unlike traditional browser scrapers that render DOM and wait for UI animations (~20–30s), this application employs a **Hybrid Token Cache + Direct API** architecture. It captures Cloudflare Turnstile verification once, caches it locally for up to 20 minutes, and performs direct HTTP requests via TLS fingerprint impersonation (`curl_cffi`).
-- **Completely Silent Execution (Headless / Off-screen):**  
-  Runs cleanly in the background without opening disturbing browser windows or stealing desktop focus.
-- **Razor Sharp High-DPI GUI:**  
-  Features native Windows Per-Monitor DPI awareness (`SetProcessDpiAwareness`) to eliminate scaling blurriness on 1080p, 1440p, and 4K displays.
-- **Persistent Settings:**  
-  Automatically remembers your last selected export directory across sessions.
-- **Multi-Format Export:**
-  - `[Player]_Realistic_Battles.csv` (Spreadsheet of realistic battles vehicle stats)
-  - `[Player]_Arcade_Battles.csv` (Spreadsheet of arcade battles vehicle stats)
-  - `[Player]_StatShark_PlayerStats.json` (Full raw JSON data)
-  - `[Player]_Summary.txt` (Concise overview of player rating, kills, win rates, and level)
+It provides an intuitive graphical interface and a standalone executable (`StatShark_Fast_Exporter_GUI.exe`), allowing anyone to pull player records without needing manual web scraping or technical setup.
 
 ---
 
-## 📁 Project Structure
+## 🎯 What is it used for?
+This tool is used to download comprehensive combat statistics and vehicle history for any War Thunder player, saving the information locally into structured files for spreadsheets, record-keeping, squadron management, or statistical analysis.
 
-```text
-├── StatShark_Exporter_GUI.py     # Main Python GUI application source code
-├── StatShark_Fast_Exporter_GUI.exe # Standalone Windows executable (~16 MB)
-├── Run_StatShark_GUI.bat         # Quick launcher script
-├── build.bat                     # One-click PyInstaller build script
-├── requirements.txt              # Python project dependencies
-├── .gitignore                    # Git ignore configuration
-└── README.md                     # Project documentation
-```
-
----
-
-## 🚀 Getting Started
-
-### Option 1: Run Pre-compiled Executable (No Python Required)
-1. Download or clone this repository.
-2. Double-click `StatShark_Fast_Exporter_GUI.exe` (or run `Run_StatShark_GUI.bat`).
-3. Enter the War Thunder username, choose your export folder, and click **Fetch & Export Data**.
-
-### Option 2: Run from Python Source
-1. Clone the repository:
-   ```bash
-   git clone <repo-url>
-   cd "StatShark Data Fetcher"
-   ```
-2. Create and activate a virtual environment:
-   ```bash
-   python -m venv .venv
-   .venv\Scripts\activate
-   ```
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Run the application:
-   ```bash
-   python StatShark_Exporter_GUI.py
-   ```
+For each exported player, the app generates:
+- **Realistic Battles CSV (`[Player]_Realistic_Battles.csv`):**  
+  A spreadsheet containing every vehicle used in Realistic Battles (Rank, Country, Vehicle Name, Battles, Victories, Win Rate, Respawns, Deaths, Air Kills, Ground Kills, Naval Kills, Score, Time Played, and K/D Ratio).
+- **Arcade Battles CSV (`[Player]_Arcade_Battles.csv`):**  
+  A vehicle-by-vehicle breakdown for Arcade Battles.
+- **Summary Text (`[Player]_Summary.txt`):**  
+  A quick-read overview of player info (Level, Title, Squadron, Ban Status) and overall combat performance (total battles, victories, win rate %, and kills).
+- **Raw JSON (`[Player]_StatShark_PlayerStats.json`):**  
+  The full raw data payload from the StatShark API for developers and advanced data analysis.
 
 ---
 
-## 🛠️ Building the Standalone Executable
-
-To compile the Python script into a single standalone `.exe` file without console windows:
-
-Simply double-click `build.bat`, or run manually:
-```bash
-pyinstaller --onefile --noconsole --name "StatShark_Fast_Exporter_GUI" StatShark_Exporter_GUI.py
-```
-
----
-
-## 📋 Requirements
-- **OS:** Windows 10 / 11 (64-bit)
-- **Browser:** Google Chrome or Microsoft Edge installed (used silently for token generation)
-- **Python (Optional):** Python 3.10+ (only if running from source)
+## ⚙️ How it works
+1. **Silent Background Authentication:**  
+   StatShark is protected by Cloudflare security verification. The tool automatically resolves verification tokens in the background without displaying browser windows or disrupting your desktop.
+2. **Direct API Fetching:**  
+   Instead of slowly rendering the entire web page and simulating clicks, the tool queries StatShark's backend API directly to resolve player User IDs (UID) and download stats in approximately 1–2 seconds.
+3. **Parsing & Local Storage:**  
+   The returned data is automatically formatted into CSV spreadsheets, plain text summaries, and JSON files, then saved to your selected destination folder. The tool remembers your chosen save location for subsequent exports.
 
 ---
 
-## 📄 License
-This project is open-source under the MIT License.
+## 🚀 How to use
+1. Run **`StatShark_Fast_Exporter_GUI.exe`** (or double-click **`Run_StatShark_GUI.bat`**).
+2. Enter the target **War Thunder Username** (User ID is optional).
+3. Choose your **Save Location** (defaults to Desktop, or click **Browse...**).
+4. Check the export formats you need (RB CSV, AB CSV, Raw JSON, Summary TXT).
+5. Click **🚀 Fetch & Export Data**.
+6. When completed, click **📂 Open Output Folder** to immediately view your exported files.
