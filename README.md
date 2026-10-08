@@ -1,5 +1,7 @@
 # StatShark War Thunder Data Exporter
 
+https://github.com/user-attachments/assets/9c82d707-cc25-4404-b2a9-556a74e362f4
+
 ## Download
 Download the latest standalone executable from the [Releases](https://github.com/SwithinHalee/statshark-exporter/releases/latest) page (no Python installation required).
 
